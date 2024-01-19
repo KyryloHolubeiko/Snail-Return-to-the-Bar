@@ -1,6 +1,6 @@
 ## This branch contains code for the latest built version of the game
 
-Project for GGJ 2023
+Project for GGJ 2024
 
 Wild Mykola Casino Slot (no win)
 
