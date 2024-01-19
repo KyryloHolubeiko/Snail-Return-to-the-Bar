@@ -1,6 +1,6 @@
 ## This branch is for the development of the Wild Mykola
 
-Project for GGJ 2023
+Project for GGJ 2024
 
 Wild Mykola Casino Slot (no win)
 
