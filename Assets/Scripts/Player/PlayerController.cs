@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-    public float initialHealth = 100.0f;
+    public float initialHealth = 3.0f;
     public float initialMana = 100.0f;
 
     private float _health;
