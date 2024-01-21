@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3529911975542969012}
   - component: {fileID: 8486369274611373817}
   - component: {fileID: 2885655248790403311}
-  - component: {fileID: 2911295152996717487}
   m_Layer: 5
   m_Name: LineButton
   m_TagString: Untagged
@@ -122,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2911295152996717487}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DialogTrigger, Assembly-CSharp
         m_MethodName: TriggerDialogue
         m_Mode: 1
@@ -134,24 +133,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2911295152996717487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991417271000039590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78f1425d2e5b6bf4c965da2307d3bdad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    npcName: Mykola Hui
-    sentences:
-    - "Hey! My name is Mykola! I'm a clown.\t"
-    - I will kill you now...
-    - I will tell you a joke!
 --- !u!1 &2383103468457168119
 GameObject:
   m_ObjectHideFlags: 0

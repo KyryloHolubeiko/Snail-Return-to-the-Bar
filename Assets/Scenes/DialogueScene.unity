@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 879257799}
   - component: {fileID: 879257798}
   m_Layer: 5
-  m_Name: DialogueMenu (1)
+  m_Name: JokeManagerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1417,8 +1417,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 991417271000039590, guid: eb93128a3a2104f62ba683662693a793,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5650282729676705945}
   m_SourcePrefab: {fileID: 100100000, guid: eb93128a3a2104f62ba683662693a793, type: 3}
+--- !u!1 &5650282729676705944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 991417271000039590, guid: eb93128a3a2104f62ba683662693a793,
+    type: 3}
+  m_PrefabInstance: {fileID: 5650282729676705943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5650282729676705945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5650282729676705944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f1425d2e5b6bf4c965da2307d3bdad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    npcName: Mykola Hui
+    sentences: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

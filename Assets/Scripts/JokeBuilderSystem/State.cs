@@ -4,29 +4,41 @@ using System;
 
 public class State {
     public string name;
+    Action onEnterAction;
 
-    public List<Line> lines { get; private set; }
+    public List<IStateAction> actions { get; set; }
     // conditions idk
 
-    public State(string name, List<Line> lines) {
+    public State(string name, List<IStateAction> actions, Action onEnter) {
         this.name = name;
-        this.lines = lines;
+        this.actions = actions;
+        this.onEnterAction = onEnter;
     }
 
-    public State(List<Line> lines) {
-        this.lines = lines;
+    public State(List<IStateAction> actions, Action onEnter) {
+        this.actions = actions;
+        this.onEnterAction = onEnter;
     }
 
-    public State(string name) {
+    public State(string name, Action onEnter) {
         this.name = name;
-        this.lines = new List<Line>();
+        this.actions = new List<IStateAction>();
+        this.onEnterAction = onEnter;
     }
 
     public State() {
-        this.lines = new List<Line>();
+        this.actions = new List<IStateAction>();
     }
 
-    public void addLines(List<Line> lines) {
-        this.lines.AddRange(lines);
+    public void addActions(List<IStateAction> actions) {
+        this.actions.AddRange(actions);
+    }
+
+    public void onEnter() {
+        if (this.onEnterAction != null) this.onEnterAction();
+    }
+
+    public void setOnEnter(Action onEnter) {
+        this.onEnterAction = onEnter;
     }
 }

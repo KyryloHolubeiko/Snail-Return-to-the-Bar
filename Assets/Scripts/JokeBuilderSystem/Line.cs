@@ -1,6 +1,7 @@
-public class Line {
+public class Line : IStateAction {
     public string text;
-    public State nextState;
+    public State nextState { get; set; }
+    public string type { get { return "Line"; } }
 
     private ILineAction _action = null;
 
