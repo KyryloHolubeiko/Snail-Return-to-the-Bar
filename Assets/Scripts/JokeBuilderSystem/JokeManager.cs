@@ -39,7 +39,7 @@ public class JokeManager : MonoBehaviour {
     public void selectLine(string lineText) {
         Line selectedLine = this._currentLines.Find(line => line.text == lineText);
         this._joke.addSelectedLine(selectedLine);
-        
+
         if (selectedLine.nextState == null) {
             Debug.Log(this._joke.build());
             return;
@@ -67,6 +67,10 @@ public class JokeManager : MonoBehaviour {
         this._currentButtons = buttons;
 
         return buttons;
+    }
+
+    public void hideButtons() {
+        this._currentButtons.ForEach(button => Destroy(button.gameObject));
     }
 
     // yes, it is very bad and ugly code. but I can't come up with anything better
