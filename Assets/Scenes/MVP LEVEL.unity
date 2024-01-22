@@ -12584,7 +12584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -24735,10 +24735,4 @@ SceneRoots:
   - {fileID: 869316457}
   - {fileID: 2086439476}
   - {fileID: 981423102}
-  - {fileID: 463084570}
-  - {fileID: 910384388}
-  - {fileID: 1699884591}
-  - {fileID: 931882550}
-  - {fileID: 2067450614}
-  - {fileID: 1064771015}
   - {fileID: 1079987095}
