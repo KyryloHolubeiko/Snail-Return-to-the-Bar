@@ -19,6 +19,7 @@ using System.Linq;
 public class GameManager : MonoBehaviour {
     public GameObject buttonPrefab;
     public Canvas canvas;
+    public DialogueDictionary[] dialogues;
 
     private Joke _joke = new Joke();
     private List<State> _allPossibleStates = new List<State>();
@@ -119,7 +120,13 @@ public class GameManager : MonoBehaviour {
                         "Selects the second line of the initial state"
                     )
                 },
-                () => {}
+                () => {
+                    // this.dialogues.Get('bartenderDialogue').dialogue.sentences = new List<String> {
+                    //     "What can I get you?",
+                    //     "We don't serve snails here.",
+                    //     "Get out!"
+                    // };
+                }
             ),
             new State(
                 "second state",
@@ -150,5 +157,11 @@ public class GameManager : MonoBehaviour {
         this._allPossibleStates[1].actions[1].nextState = this._allPossibleStates[0];
 
         this._joke.addSelectedLine(new Line(this._allPossibleStates[0].name));
+    }
+
+    [System.Serializable]
+    public struct DialogueDictionary {
+        public string name;
+        public DialogueTrigger value;
     }
 }
