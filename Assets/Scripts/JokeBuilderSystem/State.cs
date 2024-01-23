@@ -26,6 +26,11 @@ public class State {
         this.onEnterAction = onEnter;
     }
 
+    public State(Action onEnter) {
+        this.actions = new List<IStateAction>();
+        this.onEnterAction = onEnter;
+    }
+
     public State() {
         this.actions = new List<IStateAction>();
     }

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnvironmentTrigger : MonoBehaviour {
     public GameManager gameManager;
-    public int currentStateIndex;
-    public int nextStateIndex;
+    public string currentState;
+    public string nextState;
 
     [TextArea(3, 10)] public string lineToAddOnSelect;
     ILineAction action;

@@ -17,19 +17,22 @@ using System.Linq;
     then the joke will be built up and displayed
 */
 public class GameManager : MonoBehaviour {
-    public GameObject buttonPrefab;
-    public Canvas canvas;
     public DialogueDictionary[] dialogues;
+    public string initialLine;
 
     private Joke _joke = new Joke();
-    private List<State> _allPossibleStates = new List<State>();
-    private State _currentState = null;
+    private Dictionary<string, State> _allPossibleStates = new Dictionary<string, State>();
+    private string _currentStateName = "initial";
+    private State _currentState;
     private List<Line> _currentLines = new List<Line>();
     private List<Button> _currentButtons = new List<Button>();
 
+    private GameObject buttonPrefab;
+    private Canvas canvas;
+
     void Start() {
         this.initStates();
-        this._currentState = this._allPossibleStates.Count > 0 ? this._allPossibleStates[0] : null;
+        this._currentState = this._allPossibleStates.Count > 0 ? this._allPossibleStates["initial"] : null;
         this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
     }
 
@@ -38,29 +41,29 @@ public class GameManager : MonoBehaviour {
     }
 
     public void selectLine(string lineText) {
-        Line selectedLine = this._currentLines.Find(line => line.text == lineText);
-        this._joke.addSelectedLine(selectedLine);
+        // Line selectedLine = this._currentLines.Find(line => line.text == lineText);
+        // this._joke.addSelectedLine(selectedLine);
 
-        if (selectedLine.nextState == null) {
-            this.finish();
-            return;
-        }
+        // if (selectedLine.nextState == null) {
+        //     this.finish();
+        //     return;
+        // }
 
-        this._currentState = selectedLine.nextState;
-        this._currentState.onEnter();
-        this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
-        this.createButtonsFromLines();
+        // this._currentState = selectedLine.nextState;
+        // this._currentState.onEnter();
+        // this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
+        // this.createButtonsFromLines();
     }
 
     public void triggerNextState(EnvironmentTrigger trigger) {
         if (this._currentState == null) return;
-        if (trigger.currentStateIndex != this._allPossibleStates.IndexOf(this._currentState)) return;
+        if (_currentStateName != trigger.currentState) return;
 
         if (this._currentState.actions.Count == 0) return;
 
-        State toState = this._allPossibleStates[trigger.nextStateIndex];
+        State toState = this._allPossibleStates[trigger.nextState];
 
-        if (toState == null) {
+        if (toState == null || trigger.nextState == "finish") {
             this.finish();
             return;
         }
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour {
         if (!this._currentState.actions.Any(action => action.nextState == toState)) return;
 
         this._currentState = toState;
+        this._currentStateName = trigger.nextState;
         this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
         this._joke.addSelectedLine(new Line(trigger.lineToAddOnSelect));
         this._currentState.onEnter();
@@ -109,59 +113,28 @@ public class GameManager : MonoBehaviour {
 
     // yes, it is very bad and ugly code. but I can't come up with anything better
     private void initStates() {
-        this._allPossibleStates = new List<State> {
-            new State(
-                "A snail walks into a bar",
-                new List<IStateAction> {
-                    new Line(
-                        "Selects the first line of the initial state"
-                    ),
-                    new Line(
-                        "Selects the second line of the initial state"
-                    )
-                },
-                () => {
-                    // this.dialogues.Get('bartenderDialogue').dialogue.sentences = new List<String> {
-                    //     "What can I get you?",
-                    //     "We don't serve snails here.",
-                    //     "Get out!"
-                    // };
-                }
-            ),
-            new State(
-                "second state",
-                new List<IStateAction> {
-                    new Line(
-                        "Selects the first line of the second state"
-                    ),
-                    new Line(
-                        "Selects the second line of the second state"
-                    )
-                },
-                () => { this.showButtons(); }
-            ),
-            new State(
-                "last state",
-                new List<IStateAction> {
-                    new Line(
-                        "This is the end."
-                    )
-                },
-                () => { this._joke.addSelectedLine(new Line("This is the end.")); this.finish(); }
-            )
+        this._allPossibleStates = new Dictionary<string, State> {
+            { 
+                "initial", 
+                new State(() => {})
+            },
+            {
+                "second",
+                new State(() => { Debug.Log("second"); })
+            }
         };
 
-        this._allPossibleStates[0].actions[0].nextState = this._allPossibleStates[1];
-        this._allPossibleStates[0].actions[1].nextState = this._allPossibleStates[2];
-        this._allPossibleStates[1].actions[0].nextState = this._allPossibleStates[2];
-        this._allPossibleStates[1].actions[1].nextState = this._allPossibleStates[0];
+        // this._allPossibleStates[0].actions[0].nextState = this._allPossibleStates[1];
+        // this._allPossibleStates[0].actions[1].nextState = this._allPossibleStates[2];
+        // this._allPossibleStates[1].actions[0].nextState = this._allPossibleStates[2];
+        // this._allPossibleStates[1].actions[1].nextState = this._allPossibleStates[0];
 
-        this._joke.addSelectedLine(new Line(this._allPossibleStates[0].name));
+        this._joke.addSelectedLine(new Line(this.initialLine));
     }
 
     [System.Serializable]
     public struct DialogueDictionary {
         public string name;
-        public DialogueTrigger value;
+        public DialogTrigger value;
     }
 }
