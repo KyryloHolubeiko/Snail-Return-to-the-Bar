@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     public Animator animator;
 
     private Queue<string> sentences;
-    private Queue<string[]> options;
+    private Queue<Dialogue.option[]> options;
 
     private Font font;
     private int fontSize;
@@ -26,11 +26,13 @@ public class DialogueManager : MonoBehaviour
     private Canvas canvas;
     private List<GameObject> createdButtons = new List<GameObject>();
 
+    private Dialogue _currentDialogue;
+
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
-        options = new Queue<string[]>();
+        options = new Queue<Dialogue.option[]>();
 
         font = textSettings.font;
         fontSize = textSettings.fontSize;
@@ -50,13 +52,15 @@ public class DialogueManager : MonoBehaviour
 
         sentences.Clear();
 
-        List<List<string>> orderedOptions = dialogue.OrderOptionsBySentenceIndex();
+        List<List<Dialogue.option>> orderedOptions = dialogue.OrderOptionsBySentenceIndex();
 
         for (int i = 0; i < dialogue.sentences.Length; i++)
         {
             sentences.Enqueue(dialogue.sentences[i]);
             options.Enqueue(orderedOptions[i].ToArray());
         }
+
+        this._currentDialogue = dialogue;
 
         DisplayNextSentence();
     }
@@ -88,7 +92,7 @@ public class DialogueManager : MonoBehaviour
         ));
     }
 
-    IEnumerator ShowOptions (string[] options)
+    IEnumerator ShowOptions (Dialogue.option[] options)
     {
         if (this.createdButtons.Count > 0) {
             foreach (GameObject button in this.createdButtons) {
@@ -99,13 +103,13 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < options.Length; i++)
         {
-            string option = options[i];
+            Dialogue.option option = options[i];
 
             GameObject buttonObject = new GameObject("Option for sentence " + dialogueText.text + " - " + option);
             // buttonObject.transform.SetParent(this.canvas.transform, false);
 
             buttonObject.AddComponent<Text>();
-            buttonObject.GetComponent<Text>().text = option;
+            buttonObject.GetComponent<Text>().text = option.optionText;
             buttonObject.GetComponent<Text>().font = this.font;
             buttonObject.GetComponent<Text>().fontSize = this.fontSize;
             buttonObject.GetComponent<Text>().color = this.normalColor;
@@ -114,16 +118,16 @@ public class DialogueManager : MonoBehaviour
             buttonObject.GetComponent<TextButton>().onClick = () => {
                 Debug.Log("Clicked " + option);
                 
-                if (dialogue.nextState > -1 && this.gameManager != null) {
-                    this.gameManager.triggerNextState(dialogue.nextState);
+                if (option.nextState != "-1" && this.gameManager != null) {
+                    this.gameManager.triggerNextState(option.nextState);
                 }
 
-                if (dialogue.nextDialogueIndex > -1) {
+                if (option.nextDialogueIndex > -1) {
                     this.sentences.Clear();
                     this.options.Clear();
 
-                    this.sentences.Enqueue(dialogue.sentences[dialogue.nextDialogueIndex]);
-                    this.options.Enqueue(dialogue.options[dialogue.nextDialogueIndex]);
+                    this.sentences.Enqueue(_currentDialogue.sentences[option.nextDialogueIndex]);
+                    this.options.Enqueue(_currentDialogue.OrderOptionsBySentenceIndex(option.nextDialogueIndex)[0].ToArray());
                 }
                 else {
                     this.EndDialogue();

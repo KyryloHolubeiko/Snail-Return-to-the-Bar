@@ -24,14 +24,25 @@ public class Dialogue {
         this.options = options;
     }
 
-    public List<List<string>> OrderOptionsBySentenceIndex() {
-        List<List<string>> result = new List<List<string>>();
+    public List<List<option>> OrderOptionsBySentenceIndex() {
+        List<List<option>> result = new List<List<option>>();
 
         for (int i = 0; i < this.sentences.Length; i++) {
-            result.Add(new List<string>());
+            result.Add(new List<option>());
             foreach (option option in this.options) {
-                if (option.sentenceIndex == i) result[i].Add(option.optionText);
+                if (option.sentenceIndex == i) result[i].Add(option);
             }
+        }
+
+        return result;
+    }
+
+    public List<List<option>> OrderOptionsBySentenceIndex(int index) {
+        List<List<option>> result = new List<List<option>>();
+        result.Add(new List<option>());
+
+        foreach (option option in this.options) {
+            if (option.sentenceIndex == index) result[0].Add(option);
         }
 
         return result;
