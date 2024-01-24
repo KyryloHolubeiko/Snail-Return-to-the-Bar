@@ -151,6 +151,10 @@ public class GameManager : MonoBehaviour {
         this._joke.addSelectedLine(new Line(this.initialLine));
     }
 
+    public string getCurrentStateName() {
+        return this._currentStateName;
+    }
+
     [System.Serializable]
     public struct DialogueDictionary {
         public string name;
