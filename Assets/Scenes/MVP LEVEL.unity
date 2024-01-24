@@ -5924,8 +5924,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 2001203339}
-  currentStateIndex: 0
-  nextStateIndex: 1
+  currentState: 
+  nextState: 
   lineToAddOnSelect: And walks to %TEST POI%
 --- !u!1001 &461112226
 PrefabInstance:
@@ -22637,12 +22637,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23b642f9eb7d949569a0bdb4e1b064d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 991417271000039590, guid: eb93128a3a2104f62ba683662693a793,
-    type: 3}
-  canvas: {fileID: 1214999415}
   dialogues:
   - name: bartender
     value: {fileID: 2119342847}
+  initialLine: 
 --- !u!4 &2001203340
 Transform:
   m_ObjectHideFlags: 0
@@ -23562,8 +23560,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 2001203339}
-  currentStateIndex: 0
-  nextStateIndex: 1
+  currentState: 
+  nextState: 
   lineToAddOnSelect: reaches the bartender
 --- !u!1001 &2064687139
 PrefabInstance:
