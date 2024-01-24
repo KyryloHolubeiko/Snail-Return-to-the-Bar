@@ -77,6 +77,25 @@ public class GameManager : MonoBehaviour {
         this._currentState.onEnter();
     }
 
+    public void triggerNextState(string stateName) {
+        if (this._currentState == null) return;
+        if (_currentStateName == stateName) return;
+
+        State toState = this._allPossibleStates[stateName];
+
+        if (toState == null || stateName == "finish") {
+            this.finish();
+            return;
+        }
+
+        if (!this._currentState.actions.Any(action => action.nextState == toState)) return;
+
+        this._currentState = toState;
+        this._currentStateName = stateName;
+        this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
+        this._currentState.onEnter();
+    }
+
     public List<Button> createButtonsFromLines() {
         this._currentButtons.ForEach(button => Destroy(button.gameObject));
 
@@ -130,6 +149,10 @@ public class GameManager : MonoBehaviour {
         // this._allPossibleStates[1].actions[1].nextState = this._allPossibleStates[0];
 
         this._joke.addSelectedLine(new Line(this.initialLine));
+    }
+
+    public string getCurrentStateName() {
+        return this._currentStateName;
     }
 
     [System.Serializable]
