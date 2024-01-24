@@ -18,11 +18,13 @@ public class PlayerMovementController : MonoBehaviour
     private bool isOnGround = true;
     private double groundDistance = 0.1f;
     private bool doubleJumped = false;
+    private Animator _animator;
 
     void Start() {
         playerTransform = GetComponent<Transform>();
         rigidBody = GetComponent<Rigidbody>();
         groundDistance = GetComponent<Collider>().bounds.extents.y;
+        _animator = GetComponent<Animator>();
     }
 
     void FixedUpdate() {
@@ -35,6 +37,8 @@ public class PlayerMovementController : MonoBehaviour
 
         Vector3 movement = new Vector3(-horizontalMovement, .0f, verticalMovement);
         movement = Quaternion.Euler(.0f, currentRotation, .0f) * movement;
+
+        _animator.speed = Mathf.Lerp(_animator.speed, movement.magnitude, 0.5f);
         
         playerTransform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
 
