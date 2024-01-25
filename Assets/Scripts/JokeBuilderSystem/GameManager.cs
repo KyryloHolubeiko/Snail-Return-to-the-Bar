@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour {
     public DialogueDictionary[] dialogues;
     public string initialLine;
 
+    public DialogTrigger[] dialogueTrigger;
+
     private Joke _joke = new Joke();
     private Dictionary<string, State> _allPossibleStates = new Dictionary<string, State>();
     private string _currentStateName = "initial";
@@ -57,9 +59,9 @@ public class GameManager : MonoBehaviour {
 
     public void triggerNextState(EnvironmentTrigger trigger) {
         if (this._currentState == null) return;
-        if (_currentStateName != trigger.currentState) return;
+        if (_currentStateName != trigger.currentState && trigger.currentState != "any") return;
 
-        if (this._currentState.actions.Count == 0) return;
+        // if (this._currentState.actions.Count == 0) return;
 
         State toState = this._allPossibleStates[trigger.nextState];
 
@@ -68,16 +70,20 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        if (!this._currentState.actions.Any(action => action.nextState == toState)) return;
+        // if (!this._currentState.actions.Any(action => action.nextState == toState)) return;
 
         this._currentState = toState;
         this._currentStateName = trigger.nextState;
         this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
         this._joke.addSelectedLine(new Line(trigger.lineToAddOnSelect));
+
+        Debug.Log("triggerNextState " + trigger.nextState);
         this._currentState.onEnter();
     }
 
     public void triggerNextState(string stateName) {
+        Debug.Log("triggerNextState (string) " + stateName);
+
         if (this._currentState == null) return;
         if (_currentStateName == stateName) return;
 
@@ -88,7 +94,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        if (!this._currentState.actions.Any(action => action.nextState == toState)) return;
+        // if (!this._currentState.actions.Any(action => action.nextState == toState)) return;
 
         this._currentState = toState;
         this._currentStateName = stateName;
@@ -138,15 +144,14 @@ public class GameManager : MonoBehaviour {
                 new State(() => {})
             },
             {
-                "second",
-                new State(() => { Debug.Log("second"); })
+                "initial bartender",
+                new State(() => { this.dialogueTrigger[0].TriggerDialogue(); })
+            },
+            {
+                "finish",
+                new State(() => { this.finish(); })
             }
         };
-
-        // this._allPossibleStates[0].actions[0].nextState = this._allPossibleStates[1];
-        // this._allPossibleStates[0].actions[1].nextState = this._allPossibleStates[2];
-        // this._allPossibleStates[1].actions[0].nextState = this._allPossibleStates[2];
-        // this._allPossibleStates[1].actions[1].nextState = this._allPossibleStates[0];
 
         this._joke.addSelectedLine(new Line(this.initialLine));
     }

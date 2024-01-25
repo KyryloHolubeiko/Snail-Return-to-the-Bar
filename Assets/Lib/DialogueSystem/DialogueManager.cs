@@ -109,7 +109,7 @@ public class DialogueManager : MonoBehaviour
             // buttonObject.transform.SetParent(this.canvas.transform, false);
 
             buttonObject.AddComponent<Text>();
-            buttonObject.GetComponent<Text>().text = option.optionText;
+            buttonObject.GetComponent<Text>().text = "> " + option.optionText;
             buttonObject.GetComponent<Text>().font = this.font;
             buttonObject.GetComponent<Text>().fontSize = this.fontSize;
             buttonObject.GetComponent<Text>().color = this.normalColor;
