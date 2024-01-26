@@ -54,7 +54,7 @@ public class DialogueManager : MonoBehaviour
 
         List<List<Dialogue.option>> orderedOptions = dialogue.OrderOptionsBySentenceIndex();
 
-        for (int i = 0; i < dialogue.sentences.Length; i++)
+        for (int i = 0; i < dialogue.sentences.Count; i++)
         {
             sentences.Enqueue(dialogue.sentences[i]);
             options.Enqueue(orderedOptions[i].ToArray());
