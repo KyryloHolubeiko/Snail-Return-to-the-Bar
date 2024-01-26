@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour {
             },
             {
                 "initial bartender",
-                new State(() => { this.dialogue[0].TriggerDialogue(); })
+                new State(() => { this.dialogueTrigger[0].TriggerDialogue(); })
             },
             {
                 "finish",
