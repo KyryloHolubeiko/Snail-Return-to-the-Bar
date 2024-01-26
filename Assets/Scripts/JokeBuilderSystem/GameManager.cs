@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour {
     public string initialLine;
 
     public DialogTrigger[] dialogueTrigger;
+    public GameObject wcEnter;
+    public GameObject wcExit;
 
     private Joke _joke = new Joke();
     private Dictionary<string, State> _allPossibleStates = new Dictionary<string, State>();
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour {
     private State _currentState;
     private List<Line> _currentLines = new List<Line>();
     private List<Button> _currentButtons = new List<Button>();
+    private GameObject _player;
 
     private GameObject buttonPrefab;
     private Canvas canvas;
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour {
         this.initStates();
         this._currentState = this._allPossibleStates.Count > 0 ? this._allPossibleStates["initial"] : null;
         this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
+        this._player = GameObject.FindWithTag("Player");
     }
 
     public List<Line> getLines() {
@@ -150,6 +154,14 @@ public class GameManager : MonoBehaviour {
             {
                 "finish",
                 new State(() => { this.finish(); })
+            },
+            {
+                "wc enter",
+                new State(() => { this._player.transform.position = this.wcEnter.transform.position; })
+            },
+            {
+                "wc exit",
+                new State(() => { this._player.transform.position = this.wcExit.transform.position; })
             }
         };
 
