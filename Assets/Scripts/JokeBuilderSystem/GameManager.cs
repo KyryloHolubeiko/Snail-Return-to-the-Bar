@@ -24,6 +24,19 @@ public class GameManager : MonoBehaviour {
     public GameObject wcEnter;
     public GameObject wcExit;
 
+    [HideInInspector]
+    public bool inDialogue {
+        get {
+            return this._inDialogue;
+        }
+        set {
+            this._inDialogue = value;
+            GameObject.FindWithTag("Player").GetComponent<PlayerMovementController>().locked = value;
+        }
+    }
+
+    private bool _inDialogue = false;
+
     private Joke _joke = new Joke();
     private Dictionary<string, State> _allPossibleStates = new Dictionary<string, State>();
     private string _currentStateName = "initial";
@@ -197,7 +210,7 @@ public class GameManager : MonoBehaviour {
         return this._currentStateName;
     }
 
-    private boolean validateState(string stateName) {
+    private bool validateState(string stateName) {
         return this._allPossibleStates.ContainsKey(stateName);
     }
 

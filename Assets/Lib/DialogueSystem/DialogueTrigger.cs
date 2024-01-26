@@ -8,6 +8,11 @@ public class DialogTrigger : MonoBehaviour
 
     public void TriggerDialogue() 
     {
+        GameManager gameManager = FindObjectOfType<GameManager>();
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+
+        if (gameManager != null) {
+            gameManager.inDialogue = true;
+        }
     }
 }

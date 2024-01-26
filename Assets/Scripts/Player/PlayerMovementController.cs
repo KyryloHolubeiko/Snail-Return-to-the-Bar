@@ -8,6 +8,9 @@ public class PlayerMovementController : MonoBehaviour
     public float rotationSpeed = 5.0f;
     public float jumpForce = 5.0f;
 
+    [HideInInspector]
+    public bool locked = false;
+
     private Transform playerTransform;
 
     private Ray cameraRay;
@@ -28,7 +31,7 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (disabled) return;
+        if (locked) return;
 
         float currentRotation = playerTransform.rotation.eulerAngles.y;
 
