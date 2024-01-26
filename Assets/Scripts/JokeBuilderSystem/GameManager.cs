@@ -148,6 +148,10 @@ public class GameManager : MonoBehaviour {
                 new State(() => { this.dialogueTrigger[0].TriggerDialogue(); })
             },
             {
+                "initial John",
+                new State(() => { this.dialogueTrigger[0].TriggerDialogue(); })
+            },
+            {
                 "finish",
                 new State(() => { this.finish(); })
             }
