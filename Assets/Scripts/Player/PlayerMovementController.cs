@@ -31,7 +31,10 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (locked) return;
+        if (locked) {
+            _animator.speed = 0;
+            return;
+        }
 
         float currentRotation = playerTransform.rotation.eulerAngles.y;
 
