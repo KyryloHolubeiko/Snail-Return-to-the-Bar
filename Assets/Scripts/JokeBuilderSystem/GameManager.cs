@@ -190,6 +190,16 @@ public class GameManager : MonoBehaviour {
                 })
             },
             {
+                "StrangeBottle investigation",
+                new State(() => { this.dialogueTrigger[2].TriggerDialogue(); })
+            },
+            {
+                "Left bottle",
+                new State(() => {
+
+                })
+            },
+            {
                 "finish",
                 new State(() => { this.finish(); })
             },
