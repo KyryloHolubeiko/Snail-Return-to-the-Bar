@@ -149,7 +149,23 @@ public class GameManager : MonoBehaviour {
             },
             {
                 "initial John",
-                new State(() => { this.dialogueTrigger[0].TriggerDialogue(); })
+                new State(() => { 
+                    this.dialogueTrigger[1].TriggerDialogue(); 
+                    this.dialogueTrigger[0].dialogue.sentences.Add("123"); 
+                    this.dialogueTrigger[0].dialogue.sentences.Add("234"); 
+                    this.dialogueTrigger[0].dialogue.options.Add(new Dialogue.option(
+                        2,
+                        "This man, John, looks really bad.",
+                        "John investigation",
+                        this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                    ));
+                })
+            },
+            {
+                "John investigation",
+                new State(() => {
+                    
+                })
             },
             {
                 "finish",
