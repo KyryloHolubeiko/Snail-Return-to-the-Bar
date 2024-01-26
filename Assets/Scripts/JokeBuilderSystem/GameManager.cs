@@ -17,7 +17,7 @@ using System.Linq;
     then the joke will be built up and displayed
 */
 public class GameManager : MonoBehaviour {
-    public DialogueDictionary[] dialogues;
+    // public DialogueDictionary[] dialogues;
     public string initialLine;
 
     public DialogTrigger[] dialogueTrigger;
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour {
             },
             {
                 "initial bartender",
-                new State(() => { this.dialogueTrigger[0].TriggerDialogue(); })
+                new State(() => { this.dialogue[0].TriggerDialogue(); })
             },
             {
                 "finish",
