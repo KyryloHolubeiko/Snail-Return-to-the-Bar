@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25134,17 +25134,17 @@ PrefabInstance:
     - target: {fileID: 6524827919706831589, guid: ea51c68b84abbd9468f49487e060e9d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0000025127076
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 6524827919706831589, guid: ea51c68b84abbd9468f49487e060e9d4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.08889387
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 6524827919706831589, guid: ea51c68b84abbd9468f49487e060e9d4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000024031844
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6524827919706831589, guid: ea51c68b84abbd9468f49487e060e9d4,
         type: 3}
@@ -29921,6 +29921,7 @@ MonoBehaviour:
   movementSpeed: 5
   rotationSpeed: 5
   jumpForce: 5
+  locked: 0
 --- !u!65 &1339718309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37097,6 +37098,7 @@ MonoBehaviour:
   movementSpeed: 5
   rotationSpeed: 5
   jumpForce: 5
+  locked: 0
 --- !u!54 &1681496119
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -42281,7 +42283,7 @@ MonoBehaviour:
   dialogue:
     npcName: Red John
     sentences:
-    - ...
+    - This man looks very drunk, he is barely breathing...
     options:
     - sentenceIndex: 0
       optionText: This man looks dead... I mean... really dead...
@@ -42958,7 +42960,7 @@ PrefabInstance:
     - target: {fileID: 8595725771954483380, guid: f73e8979440854e4db673b7dab1e69a5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -24.81
+      value: -25.16
       objectReference: {fileID: 0}
     - target: {fileID: 8595725771954483380, guid: f73e8979440854e4db673b7dab1e69a5,
         type: 3}
@@ -43015,6 +43017,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1936627502}
+    - targetCorrespondingSourceObject: {fileID: 6285796835657255507, guid: f73e8979440854e4db673b7dab1e69a5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1936627508}
   m_SourcePrefab: {fileID: 100100000, guid: f73e8979440854e4db673b7dab1e69a5, type: 3}
 --- !u!4 &1936627500 stripped
 Transform:
@@ -43041,9 +43047,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 2001203339}
-  currentState: tbd
-  nextState: tbd
-  lineToAddOnSelect: 
+  currentState: any
+  nextState: StrangeBottle investigation
+  lineToAddOnSelect: ...
 --- !u!135 &1936627503
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -43113,6 +43119,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1936627508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936627501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f1425d2e5b6bf4c965da2307d3bdad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    npcName: Strange Bottle
+    sentences:
+    - This bottle looks different from than others...
+    options:
+    - sentenceIndex: 0
+      optionText: What if I taste it?
+      nextState: StrangeBottle investigation
+      nextDialogueIndex: -1
+    - sentenceIndex: 0
+      optionText: Leave it.
+      nextState: Left bottle
+      nextDialogueIndex: -1
 --- !u!1 &1938784743
 GameObject:
   m_ObjectHideFlags: 0
@@ -44085,6 +44116,7 @@ MonoBehaviour:
   dialogueTrigger:
   - {fileID: 1360184251}
   - {fileID: 1904521390}
+  - {fileID: 1936627508}
   wcEnter: {fileID: 182841550}
   wcExit: {fileID: 754300580}
 --- !u!4 &2001203340
