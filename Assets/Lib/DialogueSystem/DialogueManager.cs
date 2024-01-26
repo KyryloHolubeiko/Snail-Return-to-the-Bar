@@ -162,5 +162,7 @@ public class DialogueManager : MonoBehaviour
         if (this.gameManager != null) {
             this.gameManager.inDialogue = false;
         }
+
+        this.createdButtons.ForEach(button => Destroy(button));
     }
 }
