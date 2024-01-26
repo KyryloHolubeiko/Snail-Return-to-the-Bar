@@ -24,6 +24,19 @@ public class GameManager : MonoBehaviour {
     public GameObject wcEnter;
     public GameObject wcExit;
 
+    [HideInInspector]
+    public bool inDialogue {
+        get {
+            return this._inDialogue;
+        }
+        set {
+            this._inDialogue = value;
+            GameObject.FindWithTag("Player").GetComponent<PlayerMovementController>().locked = value;
+        }
+    }
+
+    private bool _inDialogue = false;
+
     private Joke _joke = new Joke();
     private Dictionary<string, State> _allPossibleStates = new Dictionary<string, State>();
     private string _currentStateName = "initial";
@@ -31,6 +44,8 @@ public class GameManager : MonoBehaviour {
     private List<Line> _currentLines = new List<Line>();
     private List<Button> _currentButtons = new List<Button>();
     private GameObject _player;
+
+    private List<State> _stateHistory = new List<State>();
 
     private GameObject buttonPrefab;
     private Canvas canvas;
@@ -63,7 +78,7 @@ public class GameManager : MonoBehaviour {
 
     public void triggerNextState(EnvironmentTrigger trigger) {
         if (this._currentState == null) return;
-        if (_currentStateName != trigger.currentState && trigger.currentState != "any") return;
+        if (!this.validateState(trigger.currentState) && trigger.currentState != "any") return;
 
         // if (this._currentState.actions.Count == 0) return;
 
@@ -81,8 +96,9 @@ public class GameManager : MonoBehaviour {
         this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
         this._joke.addSelectedLine(new Line(trigger.lineToAddOnSelect));
 
-        Debug.Log("triggerNextState " + trigger.nextState);
         this._currentState.onEnter();
+
+        this._stateHistory.Add(this._currentState);
     }
 
     public void triggerNextState(string stateName) {
@@ -104,6 +120,8 @@ public class GameManager : MonoBehaviour {
         this._currentStateName = stateName;
         this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
         this._currentState.onEnter();
+
+        this._stateHistory.Add(this._currentState);
     }
 
     public List<Button> createButtonsFromLines() {
@@ -190,6 +208,10 @@ public class GameManager : MonoBehaviour {
 
     public string getCurrentStateName() {
         return this._currentStateName;
+    }
+
+    private bool validateState(string stateName) {
+        return this._allPossibleStates.ContainsKey(stateName);
     }
 
     [System.Serializable]

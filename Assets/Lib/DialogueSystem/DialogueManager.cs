@@ -159,5 +159,8 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("isOpen", false);
+        if (this.gameManager != null) {
+            this.gameManager.inDialogue = false;
+        }
     }
 }
