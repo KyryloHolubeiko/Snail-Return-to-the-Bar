@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour {
                 new State(() => { 
                     this.dialogueTrigger[1].TriggerDialogue(); 
 
-                    this.dialogueTrigger[0].dialogue.addSentence("Just a second, I'll be right back.");
+                    this.dialogueTrigger[0].dialogue.addSentence("There is nothing we can do...");
 
                     this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
                         0,
@@ -182,10 +182,69 @@ public class GameManager : MonoBehaviour {
                         "John investigation",
                         this.dialogueTrigger[0].dialogue.sentences.Count - 1
                     ));
+
+                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                        this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                        "I will try to help him...",
+                        "John investigation",
+                        -1
+                    ));
                 })
             },
             {
                 "John investigation",
+                new State(() => {
+                    
+                })
+            },
+            {
+                "initial Ken",
+                new State(() => {
+                    this.dialogueTrigger[3].TriggerDialogue();
+                    this.dialogueTrigger[0].dialogue.addSentence("There are rumors that he works as a clown... A very sad clown... By the way, did I already tell you that snails are not welcome here?...");
+                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                        0,
+                        "This man, Ken, looks really sad.",
+                        "KenTheClown Investigation",
+                        this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                    ));
+
+                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                        this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                        "...",
+                        "KenTheClown Investigation",
+                        -1
+                    ));
+                })
+            },
+            {
+                "KenTheClown Investigation",
+                new State(() => {
+                    
+                })
+            },
+            {
+                "initial Rock",
+                new State(() => {
+                    this.dialogueTrigger[4].TriggerDialogue();
+                    this.dialogueTrigger[0].dialogue.addSentence("He recently beat three men in this bar. Since then, people without weapons do not approach him... By the way, why are you still here?...");
+                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                        0,
+                        "This man, Rock, looks really dangerous.",
+                        "BaldRock Investigation",
+                        this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                    ));
+
+                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                        this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                        "...",
+                        "BaldRock Investigation",
+                        -1
+                    ));
+                })
+            },
+            {
+                "BaldRock Investigation",
                 new State(() => {
                     
                 })
