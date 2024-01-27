@@ -14,6 +14,7 @@ public class EnvironmentTrigger : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (this.gameManager == null) return;
         if (!other || !other.CompareTag("Player")) return;
+        if (this.disabled) return;
 
         // maybe it worth to show confirm or something idk
         this.gameManager.triggerNextState(this);
