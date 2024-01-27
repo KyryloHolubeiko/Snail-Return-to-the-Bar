@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8011,8 +8011,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -294, y: 2.2999992}
-  m_SizeDelta: {x: 372, y: 50}
+  m_AnchoredPosition: {x: -232.5, y: 2.2999992}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &342820333
 PrefabInstance:
@@ -16935,17 +16935,17 @@ PrefabInstance:
     - target: {fileID: 3280630611010798990, guid: aaaaf26043d5d4b3999064288cfb50cf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.4699993
+      value: 6.02
       objectReference: {fileID: 0}
     - target: {fileID: 3280630611010798990, guid: aaaaf26043d5d4b3999064288cfb50cf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5200001
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 3280630611010798990, guid: aaaaf26043d5d4b3999064288cfb50cf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -37.78
+      value: -36.91
       objectReference: {fileID: 0}
     - target: {fileID: 3280630611010798990, guid: aaaaf26043d5d4b3999064288cfb50cf,
         type: 3}
@@ -27357,8 +27357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -399, y: 50.9}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -233.1, y: 50.9}
+  m_SizeDelta: {x: 500, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1211207858
 PrefabInstance:
@@ -42782,7 +42782,7 @@ MonoBehaviour:
   dialogue:
     npcName: Red John
     sentences:
-    - This man looks very drunk, he is barely breathing...
+    - He's too drunk...
     options:
     - sentenceIndex: 0
       optionText: This man looks dead... I mean... really dead...
@@ -44923,8 +44923,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 320, y: -55}
-  m_SizeDelta: {x: 372, y: 80}
+  m_AnchoredPosition: {x: 384.7, y: -55}
+  m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &2021830129 stripped
 Transform:
