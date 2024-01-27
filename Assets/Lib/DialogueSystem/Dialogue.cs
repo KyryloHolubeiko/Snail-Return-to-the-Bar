@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class Dialogue {   
@@ -46,6 +47,16 @@ public class Dialogue {
         }
 
         return result;
+    }
+
+    public void addSentence(string sentence) {
+        if (!this.sentences.Contains(sentence))
+        this.sentences.Add(sentence);
+    }
+
+    public void addOption(option option) {
+        if (!this.options.Any(o => o.sentenceIndex == option.sentenceIndex && o.optionText == option.optionText))
+        this.options.Add(option);
     }
 
     [System.Serializable]

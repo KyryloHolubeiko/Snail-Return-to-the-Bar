@@ -173,7 +173,10 @@ public class GameManager : MonoBehaviour {
                 "initial John",
                 new State(() => { 
                     this.dialogueTrigger[1].TriggerDialogue(); 
-                    this.dialogueTrigger[0].dialogue.options.Add(new Dialogue.option(
+
+                    this.dialogueTrigger[0].dialogue.addSentence("Just a second, I'll be right back.");
+
+                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
                         0,
                         "This man, John, looks really bad.",
                         "John investigation",
