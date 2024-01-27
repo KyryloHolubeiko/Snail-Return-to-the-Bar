@@ -1,9 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnvironmentTrigger : MonoBehaviour {
     public GameManager gameManager;
     public string currentState;
     public string nextState;
+
+    private bool disabled = false;
 
     [TextArea(3, 10)] public string lineToAddOnSelect;
     ILineAction action;
@@ -15,6 +18,9 @@ public class EnvironmentTrigger : MonoBehaviour {
         // maybe it worth to show confirm or something idk
         this.gameManager.triggerNextState(this);
         this.executeAction();
+
+        this.disabled = true;
+        StartCoroutine(disableForSeconds(5f));
     }
 
     void OnTriggerExit(Collider other) {
@@ -26,5 +32,10 @@ public class EnvironmentTrigger : MonoBehaviour {
 
     public void executeAction() {
         if (this.action != null) this.action.Execute();
+    }
+
+    private IEnumerator disableForSeconds(float seconds) {
+        yield return new WaitForSeconds(seconds);
+        this.disabled = false;
     }
 }
