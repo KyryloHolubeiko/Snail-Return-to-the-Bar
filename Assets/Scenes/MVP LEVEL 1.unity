@@ -31026,6 +31026,10 @@ MonoBehaviour:
       optionText: ...
       nextState: finish
       nextDialogueIndex: -1
+    - sentenceIndex: 0
+      optionText: Hey, I want to drink
+      nextState: initial
+      nextDialogueIndex: 1
 --- !u!4 &1368944764 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4293446130394566, guid: 1d3e21374171a4335a8a51ecb8bf2d17,

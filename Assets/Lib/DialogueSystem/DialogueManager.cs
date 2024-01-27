@@ -51,6 +51,7 @@ public class DialogueManager : MonoBehaviour
         npcNameText.text = dialogue.npcName;
 
         sentences.Clear();
+        options.Clear();
 
         List<List<Dialogue.option>> orderedOptions = dialogue.OrderOptionsBySentenceIndex();
 
@@ -116,7 +117,7 @@ public class DialogueManager : MonoBehaviour
 
             buttonObject.AddComponent<TextButton>();
             buttonObject.GetComponent<TextButton>().onClick = () => {
-                Debug.Log("Clicked " + option);
+                this.createdButtons.ForEach(button => Destroy(button));
                 
                 if (option.nextState != "-1" && this.gameManager != null) {
                     this.gameManager.triggerNextState(option.nextState);
@@ -128,6 +129,10 @@ public class DialogueManager : MonoBehaviour
 
                     this.sentences.Enqueue(_currentDialogue.sentences[option.nextDialogueIndex]);
                     this.options.Enqueue(_currentDialogue.OrderOptionsBySentenceIndex(option.nextDialogueIndex)[0].ToArray());
+
+                    string sentence = _currentDialogue.sentences[option.nextDialogueIndex];
+                    StopAllCoroutines();
+                    StartCoroutine(TypeSentence(sentence));
                 }
                 else {
                     this.EndDialogue();
