@@ -20,7 +20,6 @@ public class EnvironmentTrigger : MonoBehaviour {
         this.executeAction();
 
         this.disabled = true;
-        StartCoroutine(disableForSeconds(5f));
     }
 
     void OnTriggerExit(Collider other) {
@@ -28,6 +27,7 @@ public class EnvironmentTrigger : MonoBehaviour {
         if (!other || !other.CompareTag("Player")) return;
 
         this.gameManager.hideButtons();
+        StartCoroutine(disableForSeconds(5f));
     }
 
     public void executeAction() {
