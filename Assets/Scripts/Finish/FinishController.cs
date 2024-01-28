@@ -28,11 +28,11 @@ public class FinishController : MonoBehaviour {
     void FixedUpdate() {
         Vector3 oldPosition = this.finishStory.transform.position;
 
-        if ((oldPosition.y - 190) > (StaticData.passedStates.Count * 28 * 4 * 3.5)) {
+        if ((oldPosition.y - 1400) > (StaticData.passedStates.Count * 28 * 4 * 3.5)) {
             // show the restart button
             return;
         }
-        Vector3 newPosition = new Vector3(can.GetComponent<RectTransform>().position.x, oldPosition.y + (14f / 60f), 0);
+        Vector3 newPosition = new Vector3(can.GetComponent<RectTransform>().position.x, oldPosition.y + (28f / 24f), 777);
 
         this.finishStory.transform.position = newPosition;
     }
