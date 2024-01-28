@@ -10161,7 +10161,7 @@ PrefabInstance:
     - target: {fileID: 360020996318003118, guid: c161c997c07308740af96a685231f764,
         type: 3}
       propertyPath: m_Name
-      value: mini simple demo_04
+      value: drug dealer
       objectReference: {fileID: 0}
     - target: {fileID: 1333437166622959888, guid: c161c997c07308740af96a685231f764,
         type: 3}
@@ -31993,11 +31993,11 @@ MonoBehaviour:
     options:
     - sentenceIndex: 1
       optionText: ...
-      nextState: finish
+      nextState: asked for drink
       nextDialogueIndex: -1
     - sentenceIndex: 0
       optionText: Hey, I want to drink
-      nextState: initial
+      nextState: 
       nextDialogueIndex: 1
 --- !u!4 &1368944764 stripped
 Transform:
@@ -48783,7 +48783,7 @@ MonoBehaviour:
       nextDialogueIndex: -1
     - sentenceIndex: 0
       optionText: Why are you gay?
-      nextState: finish
+      nextState: called the cop gay
       nextDialogueIndex: -1
     - sentenceIndex: 0
       optionText: How did you become Bartender's friend?

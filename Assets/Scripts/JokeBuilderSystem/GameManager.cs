@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 /*
     tl;dr; just a state machine
@@ -62,8 +63,6 @@ public class GameManager : MonoBehaviour {
 
         this.getDrunkAnimator.speed = 0;
         this.copMaterial.SetTexture("_BaseMap", this.copTexture);
-
-        this.triggerNextState("John awakened");
     }
 
     public List<Line> getLines() {
@@ -166,6 +165,8 @@ public class GameManager : MonoBehaviour {
     }
 
     private void finish() {
+        StaticData.passedStates = this._stateHistory;
+        SceneManager.LoadScene("Final");
         Debug.Log(this._joke.build());
     }
 
@@ -184,6 +185,13 @@ public class GameManager : MonoBehaviour {
                 new State(
                     "initial bartender",
                     () => { this.dialogueTrigger[0].TriggerDialogue(); }
+                )
+            },
+            {
+                "asked for drink",
+                new State(
+                    "asked for drink",
+                    () => { this.finish(); }
                 )
             },
             {
@@ -459,8 +467,17 @@ public class GameManager : MonoBehaviour {
                             new Dialogue.option(
                                 this.dialogueTrigger[0].dialogue.sentences.Count - 2,
                                 "So, uhm... a snail walks into a bar?..",
-                                "finish",
+                                "stupid joke",
                                 this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                            )
+                        );
+
+                        this.dialogueTrigger[0].dialogue.addOption(
+                            new Dialogue.option(
+                                this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                                "...",
+                                "finish",
+                                -1
                             )
                         );
                     }
@@ -481,8 +498,6 @@ public class GameManager : MonoBehaviour {
                     "gun take",
                     () => {
                         if (this.validateState("cop became gay") == false) {
-                            Debug.Log("cop is not hay yet");
-
                             this.dialogueTrigger[7].dialogue = new Dialogue("Cop Joe", new List<string>());
                             this.dialogueTrigger[7].dialogue.addSentence("Hey, what are you doing here? Is this a gun?! You are under arrest!");
                             this.dialogueTrigger[7].dialogue.addOption(new Dialogue.option(
@@ -493,6 +508,8 @@ public class GameManager : MonoBehaviour {
                             ));
                             
                             StartCoroutine(this.restartGunDialogue());
+
+                            this._stateHistory.Add(new State("taken with gun", () => {}));
 
                             return;
                         }
@@ -572,19 +589,19 @@ public class GameManager : MonoBehaviour {
                         this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
                             2,
                             "I'm on a whiskey diet. I've lost three days already.",
-                            "",
+                            "stupid joke",
                             3
                         ));
                         this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
                             2,
                             "A rabbi, a priest and a vicar walk into a bar. The barman says, “Is this some kind of joke?”",
-                            "",
+                            "good joke",
                             4
                         ));
                         this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
                             2,
                             "I'm not a complete idiot, some parts are missing.",
-                            "",
+                            "stupid joke",
                             3
                         ));
                         this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
@@ -606,6 +623,13 @@ public class GameManager : MonoBehaviour {
                             -1
                         ));
                     }
+                )
+            },
+            {
+                "called the cop gay",
+                new State(
+                    "called the cop gay",
+                    () => { this.finish(); }
                 )
             }
         };
