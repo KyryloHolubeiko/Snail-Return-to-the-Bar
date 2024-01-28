@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class FinishController : MonoBehaviour {
     public GameObject finishStory;
+    public Canvas can;
 
     void Start() {
         this.finishStory.GetComponent<Text>().text = buildUpTheJoke();
@@ -31,7 +32,7 @@ public class FinishController : MonoBehaviour {
             // show the restart button
             return;
         }
-        Vector3 newPosition = new Vector3(360, oldPosition.y + (14f / 60f), 0);
+        Vector3 newPosition = new Vector3(can.GetComponent<RectTransform>().position.x, oldPosition.y + (14f / 60f), 0);
 
         this.finishStory.transform.position = newPosition;
     }

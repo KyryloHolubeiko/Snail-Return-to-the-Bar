@@ -553,6 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finishStory: {fileID: 1436631883}
+  can: {fileID: 1296060569}
 --- !u!4 &1984401454
 Transform:
   m_ObjectHideFlags: 0
