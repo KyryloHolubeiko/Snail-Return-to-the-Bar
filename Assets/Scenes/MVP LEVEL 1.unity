@@ -18163,7 +18163,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ecc0c158cc8b87e4d89826af20b37d78,
         type: 3}
       propertyPath: m_Name
-      value: square head character animations
+      value: security
       objectReference: {fileID: 0}
     - target: {fileID: 1640983107266808996, guid: ecc0c158cc8b87e4d89826af20b37d78,
         type: 3}
