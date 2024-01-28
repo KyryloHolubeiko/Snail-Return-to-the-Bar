@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class FinishController : MonoBehaviour {
     public GameObject finishStory;
@@ -13,6 +14,14 @@ public class FinishController : MonoBehaviour {
         //                                                 0, 
         //                                                 (-200 + (StaticData.passedStates.Count / 3) * 14),
         //                                                 0);
+        
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     void FixedUpdate() {
