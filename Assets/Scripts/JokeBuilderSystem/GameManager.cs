@@ -547,38 +547,58 @@ public class GameManager : MonoBehaviour {
                 new State(
                     "John awakened",
                     () => {
-                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                            this.dialogueTrigger[0].dialogue.sentences.Count - 2,
-                            "I'm on a whiskey diet. I've lost three days already.",
-                            "finish",
-                            this.dialogueTrigger[0].dialogue.sentences.Count - 1
-                        ));
-                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                            this.dialogueTrigger[0].dialogue.sentences.Count - 3,
-                            "A rabbi, a priest and a vicar walk into a bar. The barman says, “Is this some kind of joke?”",
-                            "finish",
-                            this.dialogueTrigger[0].dialogue.sentences.Count
-                        ));
-                         this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                            this.dialogueTrigger[0].dialogue.sentences.Count - 2,
-                            "Here's another one. I'm not a complete idiot, some parts are missing.",
-                            "finish",
-                            this.dialogueTrigger[0].dialogue.sentences.Count - 1
-                        ));
-
+                        this.dialogueTrigger[0].dialogue = new Dialogue("Bartender", new List<string>());
+                        this.dialogueTrigger[0].dialogue.addSentence("Hey there");
+                        this.dialogueTrigger[0].dialogue.addSentence("Snails are not allowed here. Go away.");
+                        this.dialogueTrigger[0].dialogue.addSentence("Go ahead. I'm listening.");
+                        this.dialogueTrigger[0].dialogue.addSentence("Are you kidding me? Go out of here! Security!");
                         this.dialogueTrigger[0].dialogue.addSentence("Ha-ha-ha! FINALLY! ABSOLUTE POWERFUL JOKE! AFTER ALL THESE YEARS!");
-
-                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                            this.dialogueTrigger[0].dialogue.sentences.Count - 1,
-                            "What?",
-                            "",
-                            this.dialogueTrigger[0].dialogue.sentences.Count
-                        ));
-                        
                         this.dialogueTrigger[0].dialogue.addSentence("Nevermind, take your drink.");
 
                         this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                            this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                            0,
+                            "I need a drink",
+                            "finish",
+                            1
+                        ));
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            0,
+                            "Wanna hear a joke?",
+                            "",
+                            2
+                        ));
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            2,
+                            "I'm on a whiskey diet. I've lost three days already.",
+                            "",
+                            3
+                        ));
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            2,
+                            "A rabbi, a priest and a vicar walk into a bar. The barman says, “Is this some kind of joke?”",
+                            "",
+                            4
+                        ));
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            2,
+                            "I'm not a complete idiot, some parts are missing.",
+                            "",
+                            3
+                        ));
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            3,
+                            "...",
+                            "finish",
+                            -1
+                        ));
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            4
+                            "What?",
+                            "",
+                            5
+                        ));
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            5,
                             "Thanks!",
                             "finish",
                             -1
@@ -622,7 +642,7 @@ public class GameManager : MonoBehaviour {
         ));
         this.dialogueTrigger[5].dialogue.addOption(new Dialogue.option(
             1,
-            "No problem... So will you tell me how to become a bartender's friend? I want drink really hard",
+            "No problem... So will you tell me how to become a bartender's friend?",
             null,
             2
         ));
