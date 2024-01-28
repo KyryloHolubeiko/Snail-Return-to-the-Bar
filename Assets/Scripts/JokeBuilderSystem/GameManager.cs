@@ -615,6 +615,12 @@ public class GameManager : MonoBehaviour {
         this.dialogueTrigger[5].dialogue.addSentence("Oh, I forgot about that. Listen, the bartender is a big fan of good jokes. But you need to come up with a really good one");
 
         this.dialogueTrigger[5].dialogue.addOption(new Dialogue.option(
+            0,
+            "...",
+            null,
+            1
+        ));
+        this.dialogueTrigger[5].dialogue.addOption(new Dialogue.option(
             1,
             "No problem... So will you tell me how to become a bartender's friend? I want drink really hard",
             null,
