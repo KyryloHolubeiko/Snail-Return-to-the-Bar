@@ -636,14 +636,14 @@ public class GameManager : MonoBehaviour {
                 "stupid joke",
                 new State(
                     "stupid joke",
-                    () => { this.finish(); }
+                    () => { }
                 )
             },
             {
                 "good joke",
                 new State(
                     "good joke",
-                    () => { this.finish(); }
+                    () => { }
                 )
             }
         };

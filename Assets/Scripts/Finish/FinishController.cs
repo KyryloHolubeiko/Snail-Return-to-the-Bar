@@ -28,7 +28,7 @@ public class FinishController : MonoBehaviour {
     void FixedUpdate() {
         Vector3 oldPosition = this.finishStory.transform.position;
 
-        if ((oldPosition.y - 190) > (StaticData.passedStates.Count * 28 * 2 * 3.5)) {
+        if ((oldPosition.y - 190) > (StaticData.passedStates.Count * 28 * 4 * 3.5)) {
             // show the restart button
             return;
         }
