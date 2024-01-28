@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour {
 
         this.getDrunkAnimator.speed = 0;
         this.copMaterial.SetTexture("_BaseMap", this.copTexture);
+
+        this.triggerNextState("John awakened");
     }
 
     public List<Line> getLines() {
@@ -592,7 +594,7 @@ public class GameManager : MonoBehaviour {
                             -1
                         ));
                         this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                            4
+                            4,
                             "What?",
                             "",
                             5
