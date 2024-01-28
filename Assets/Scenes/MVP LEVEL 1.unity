@@ -3488,7 +3488,7 @@ PrefabInstance:
     - target: {fileID: 6540681369557983152, guid: d77999c19b7f3294599d4029e5b08ace,
         type: 3}
       propertyPath: m_Name
-      value: mini simple demo_06
+      value: unconscious with gun
       objectReference: {fileID: 0}
     - target: {fileID: 7754015629007064849, guid: d77999c19b7f3294599d4029e5b08ace,
         type: 3}
@@ -5530,6 +5530,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 754300583}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7681971c784fb466782de55cba2585a8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 517965036}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -8391222552659086748, guid: 7681971c784fb466782de55cba2585a8,
         type: 3}
@@ -10780,13 +10784,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    npcName: Carl Dealer
+    npcName: Carl the Dealer
     sentences:
     - Duuuuude, are you really a snail or did I finally get a good product??
+    - Ohhhhh that's soooo cooool my dude
+    - Yeaaaah take it go ahead
     options:
     - sentenceIndex: 0
-      optionText: ...
-      nextState: initial Dealer
+      optionText: You're high bro
+      nextState: 
+      nextDialogueIndex: 1
+    - sentenceIndex: 1
+      optionText: Do you have some goods for me?
+      nextState: dealer revealed
+      nextDialogueIndex: 2
+    - sentenceIndex: 1
+      optionText: Take a rest dude
+      nextState: 
+      nextDialogueIndex: -1
+    - sentenceIndex: 2
+      optionText: Cool bye
+      nextState: 
       nextDialogueIndex: -1
 --- !u!114 &452131782
 MonoBehaviour:
@@ -10801,9 +10819,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 2001203339}
-  currentState: any
-  nextState: initial Dealer
-  lineToAddOnSelect: 
+  currentState: drug request
+  nextState: dealer found
+  lineToAddOnSelect: And now the snail found out that a drug dealer is sitting in
+    the restroom
 --- !u!65 &452131783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12859,6 +12878,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 408743823}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &517965035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 517965036}
+  m_Layer: 0
+  m_Name: WC Exit Spawn Point (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &517965036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517965035}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.000001, y: -3.87, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 201996644}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &521448884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25993,7 +26043,7 @@ PrefabInstance:
     - target: {fileID: 280795203805598139, guid: ea51c68b84abbd9468f49487e060e9d4,
         type: 3}
       propertyPath: m_Name
-      value: mini simple demo_07
+      value: dead boy
       objectReference: {fileID: 0}
     - target: {fileID: 1845077762028554660, guid: ea51c68b84abbd9468f49487e060e9d4,
         type: 3}
@@ -27318,6 +27368,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1164740456}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1169175252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 199669651405181594, guid: 41236ddb97b001d499cadd3503c086dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1947901952}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1170464878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27679,7 +27735,7 @@ PrefabInstance:
     - target: {fileID: 6839065564630337043, guid: 950f64c9c1d51e14b84b4e4d4a7b775a,
         type: 3}
       propertyPath: m_Name
-      value: mini simple demo_05
+      value: clown
       objectReference: {fileID: 0}
     - target: {fileID: 7885011306945019654, guid: 950f64c9c1d51e14b84b4e4d4a7b775a,
         type: 3}
@@ -34389,6 +34445,68 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1947901952}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1490504924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169175252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f1425d2e5b6bf4c965da2307d3bdad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    npcName: Pistol
+    sentences:
+    - A gun leaves near the unconscious guy
+    options:
+    - sentenceIndex: 0
+      optionText: I don't think I should touch it
+      nextState: 
+      nextDialogueIndex: -1
+    - sentenceIndex: 0
+      optionText: This can be useful
+      nextState: gun take
+      nextDialogueIndex: -1
+--- !u!114 &1490504925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169175252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491e631e597914675a1a483fc63fc21b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 2001203339}
+  currentState: any
+  nextState: pistol investigation
+  lineToAddOnSelect: founds a pistol near the unconscious guy
+--- !u!65 &1490504926
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169175252}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5820665, y: 3.0155325, z: 1.6507924}
+  m_Center: {x: -0.7439819, y: -1.301244, z: 0.094541535}
 --- !u!1001 &1495669880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45386,7 +45504,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 199669651405181594, guid: 41236ddb97b001d499cadd3503c086dc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1490504926}
+    - targetCorrespondingSourceObject: {fileID: 199669651405181594, guid: 41236ddb97b001d499cadd3503c086dc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1490504925}
+    - targetCorrespondingSourceObject: {fileID: 199669651405181594, guid: 41236ddb97b001d499cadd3503c086dc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1490504924}
   m_SourcePrefab: {fileID: 100100000, guid: 41236ddb97b001d499cadd3503c086dc, type: 3}
 --- !u!1 &1952474215
 GameObject:
@@ -45969,7 +46099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23b642f9eb7d949569a0bdb4e1b064d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialLine: 
+  initialLine: A snail enters a bar
   dialogueTrigger:
   - {fileID: 1360184251}
   - {fileID: 1904521390}
@@ -45977,9 +46107,14 @@ MonoBehaviour:
   - {fileID: 1313467563}
   - {fileID: 883798851}
   - {fileID: 2124305355}
+  - {fileID: 452131781}
+  - {fileID: 1490504924}
   wcEnter: {fileID: 182841550}
-  wcExit: {fileID: 754300580}
+  wcExit: {fileID: 517965035}
   getDrunkAnimator: {fileID: 1739511337}
+  copMaterial: {fileID: 2100000, guid: dce241fd739534401bcf0bc61dac0c00, type: 2}
+  copTexture: {fileID: 2800000, guid: 091530486f1654a529e2a78342e2498d, type: 3}
+  gayCopTexture: {fileID: 2800000, guid: 441ba3c84444d4ff9bee3fe7169d2a9d, type: 3}
 --- !u!4 &2001203340
 Transform:
   m_ObjectHideFlags: 0
@@ -48635,9 +48770,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    npcName: Sweet Joe
+    npcName: Cop Joe
     sentences:
     - Hello fellow snail. Did you notice anything suspicious?
+    - Ha-ha! I'll let you know. But first, I need your help. You help me, I help
+      you. Deal?
+    - Somewhere in this bar a man selling drugs. Help me find him
     options:
     - sentenceIndex: 0
       optionText: Nope. Nothing. I'll let you know if I notice anything
@@ -48646,6 +48784,22 @@ MonoBehaviour:
     - sentenceIndex: 0
       optionText: Why are you gay?
       nextState: finish
+      nextDialogueIndex: -1
+    - sentenceIndex: 0
+      optionText: How did you become Bartender's friend?
+      nextState: 
+      nextDialogueIndex: 1
+    - sentenceIndex: 1
+      optionText: Okay... What do I need to do?
+      nextState: 
+      nextDialogueIndex: 2
+    - sentenceIndex: 2
+      optionText: Deal. I'll help you with this
+      nextState: drug request
+      nextDialogueIndex: -1
+    - sentenceIndex: 2
+      optionText: I need to think first
+      nextState: 
       nextDialogueIndex: -1
 --- !u!114 &2124305356
 MonoBehaviour:

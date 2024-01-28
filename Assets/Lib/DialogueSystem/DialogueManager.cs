@@ -119,7 +119,7 @@ public class DialogueManager : MonoBehaviour
             buttonObject.GetComponent<TextButton>().onClick = () => {
                 this.createdButtons.ForEach(button => Destroy(button));
                 
-                if (option.nextState != "-1" && this.gameManager != null) {
+                if (option.nextState != "-1" && option.nextState != null && option.nextState != "" && this.gameManager != null) {
                     this.gameManager.triggerNextState(option.nextState);
                 }
 
@@ -161,7 +161,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         animator.SetBool("isOpen", false);
         if (this.gameManager != null) {

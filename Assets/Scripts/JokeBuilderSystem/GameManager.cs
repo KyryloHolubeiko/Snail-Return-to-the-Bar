@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour {
     public GameObject wcEnter;
     public GameObject wcExit;
     public Animator getDrunkAnimator;
+    public Material copMaterial;
+    public Texture copTexture;
+    public Texture gayCopTexture;
 
     [HideInInspector]
     public bool inDialogue {
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour {
         this._player = GameObject.FindWithTag("Player");
 
         this.getDrunkAnimator.speed = 0;
+        this.copMaterial.SetTexture("_BaseMap", this.copTexture);
     }
 
     public List<Line> getLines() {
@@ -314,7 +318,7 @@ public class GameManager : MonoBehaviour {
                 new State(
                     "Ken FinishLine",
                     () => {
-
+                        this.dialogueTrigger[5].dialogue.npcName = "Sweet Joe";
                     }
                 )
             },
@@ -381,6 +385,206 @@ public class GameManager : MonoBehaviour {
 
                     }
                 )
+            },
+            {
+                "drug request",
+                new State(
+                    "drug request",
+                    () => {
+                        this.dialogueTrigger[5].dialogue = new Dialogue("Sweet Joe", new List<string>());
+                        this.dialogueTrigger[5].dialogue.addSentence("Have you found him?");
+                        this.dialogueTrigger[5].dialogue.addOption(new Dialogue.option(
+                            1,
+                            "No, I haven't found him yet.",
+                            "cop Investigation",
+                            -1
+                        ));
+                    }
+                )
+            },
+            {
+                "dealer found",
+                new State(
+                    "dealer found",
+                    () => {
+                        this.dialogueTrigger[6].TriggerDialogue();
+                    }
+                )
+            },
+            {
+                "dealer revealed",
+                new State(
+                    "dealer revealed",
+                    () => {
+                        this.dialogueTrigger[5].dialogue.addOption(new Dialogue.option(
+                            0,
+                            "Yes, he is in the toilet. Here is the evidence.",
+                            "cop became gay",
+                            -1
+                        ));
+                    }
+                )
+            },
+            {
+                "cop became gay",
+                new State(
+                    "cop became gay",
+                    () => {
+                        this.copMaterial.SetTexture("_BaseMap", this.gayCopTexture);
+                        StartCoroutine(this.restartCopsDialogue());
+                    }
+                )
+            },
+            {
+                "looking for jokes",
+                new State(
+                    "looking for jokes",
+                    () => {
+                        this.dialogueTrigger[0].dialogue.addSentence("Go ahead. I'm listening.");
+
+                        this.dialogueTrigger[0].dialogue.addOption(
+                            new Dialogue.option(
+                                0,
+                                "Wanna hear a joke?",
+                                "",
+                                this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                            )
+                        );
+
+                        this.dialogueTrigger[0].dialogue.addSentence("Are you kidding me? Go out of here! Security!");
+
+                        this.dialogueTrigger[0].dialogue.addOption(
+                            new Dialogue.option(
+                                this.dialogueTrigger[0].dialogue.sentences.Count - 2,
+                                "So, uhm... a snail walks into a bar?..",
+                                "finish",
+                                this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                            )
+                        );
+                    }
+                )
+            },
+            {
+                "pistol investigation",
+                new State(
+                    "pistol investigation",
+                    () => {
+                        this.dialogueTrigger[7].TriggerDialogue();
+                    }
+                )
+            },
+            {
+                "gun take",
+                new State(
+                    "gun take",
+                    () => {
+                        if (this.validateState("cop became gay") == false) {
+                            Debug.Log("cop is not hay yet");
+
+                            this.dialogueTrigger[7].dialogue = new Dialogue("Cop Joe", new List<string>());
+                            this.dialogueTrigger[7].dialogue.addSentence("Hey, what are you doing here? Is this a gun?! You are under arrest!");
+                            this.dialogueTrigger[7].dialogue.addOption(new Dialogue.option(
+                                0,
+                                "...",
+                                "finish",
+                                -1
+                            ));
+                            
+                            StartCoroutine(this.restartGunDialogue());
+
+                            return;
+                        }
+
+                        this.dialogueTrigger[1].dialogue.sentences = new List<string>();
+                        this.dialogueTrigger[1].dialogue.addSentence("K... Kill me... Please...");
+                        this.dialogueTrigger[1].dialogue.addSentence("Thanks boy. Now I feel better. By the way, I now one good joke about that");
+                        this.dialogueTrigger[1].dialogue.addSentence("I'm on a whiskey diet. I've lost three days already.");
+                        this.dialogueTrigger[1].dialogue.addSentence("Here's another one. I'm not a complete idiot, some parts are missing.");
+                        this.dialogueTrigger[1].dialogue.addSentence("Take this: A priest, a rabbi and a vicar walk into a bar. The barman says, “Is this some kind of joke?”");
+
+
+                        this.dialogueTrigger[1].dialogue.addOption(new Dialogue.option(
+                            0,
+                            "What? No, never!",
+                            "",
+                            -1
+                        ));
+                        this.dialogueTrigger[1].dialogue.addOption(new Dialogue.option(
+                            0,
+                            "Put the trigger now he's dead",
+                            "John awakened",
+                            1
+                        ));
+                        this.dialogueTrigger[1].dialogue.addOption(new Dialogue.option(
+                            1,
+                            "...",
+                            "",
+                            2
+                        ));
+                        this.dialogueTrigger[1].dialogue.addOption(new Dialogue.option(
+                            2,
+                            "What a funny one!",
+                            "",
+                            3
+                        ));
+                        this.dialogueTrigger[1].dialogue.addOption(new Dialogue.option(
+                            3,
+                            "Ha-ha, one more!",
+                            "",
+                            4
+                        ));
+                        this.dialogueTrigger[1].dialogue.addOption(new Dialogue.option(
+                            3,
+                            "I'm laughing so hard! I can't stop! I need to tell these to someone else!",
+                            "",
+                            -1
+                        ));
+                    }
+                )
+            },
+            {
+                "John awakened",
+                new State(
+                    "John awakened",
+                    () => {
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 2,
+                            "I'm on a whiskey diet. I've lost three days already.",
+                            "finish",
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                        ));
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 3,
+                            "A rabbi, a priest and a vicar walk into a bar. The barman says, “Is this some kind of joke?”",
+                            "finish",
+                            this.dialogueTrigger[0].dialogue.sentences.Count
+                        ));
+                         this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 2,
+                            "Here's another one. I'm not a complete idiot, some parts are missing.",
+                            "finish",
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                        ));
+
+                        this.dialogueTrigger[0].dialogue.addSentence("Ha-ha-ha! FINALLY! ABSOLUTE POWERFUL JOKE! AFTER ALL THESE YEARS!");
+
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                            "What?",
+                            "",
+                            this.dialogueTrigger[0].dialogue.sentences.Count
+                        ));
+                        
+                        this.dialogueTrigger[0].dialogue.addSentence("Nevermind, take your drink.");
+
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                            "Thanks!",
+                            "finish",
+                            -1
+                        ));
+                    }
+                )
             }
         };
 
@@ -400,6 +604,33 @@ public class GameManager : MonoBehaviour {
         Debug.Log("alreadyPassedStates: " + alreadyPassedStates);
 
         return this._stateHistory.Any(state => state.name == stateName);
+    }
+
+    private IEnumerator restartCopsDialogue() {
+        yield return new WaitForSeconds(2);
+
+        this.dialogueTrigger[5].dialogue = new Dialogue("Sweet Joe", new List<string>());
+        this.dialogueTrigger[5].dialogue.addSentence("Ahh, what a good stuff");
+        this.dialogueTrigger[5].dialogue.addSentence("Thanks for help!");
+        this.dialogueTrigger[5].dialogue.addSentence("Oh, I forgot about that. Listen, the bartender is a big fan of good jokes. But you need to come up with a really good one");
+
+        this.dialogueTrigger[5].dialogue.addOption(new Dialogue.option(
+            1,
+            "No problem... So will you tell me how to become a bartender's friend? I want drink really hard",
+            null,
+            2
+        ));
+        this.dialogueTrigger[5].dialogue.addOption(new Dialogue.option(
+            2,
+            "I see. Thanks for the information",
+            "looking for jokes",
+            -1
+        ));
+    }
+
+    private IEnumerator restartGunDialogue() {
+        yield return new WaitForSeconds(2);
+        this.dialogueTrigger[7].TriggerDialogue();
     }
     
     [System.Serializable]
