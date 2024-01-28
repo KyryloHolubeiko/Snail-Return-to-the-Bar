@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
     public DialogTrigger[] dialogueTrigger;
     public GameObject wcEnter;
     public GameObject wcExit;
+    public Animator getDrunkAnimator;
 
     [HideInInspector]
     public bool inDialogue {
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour {
         this._currentState = this._allPossibleStates.Count > 0 ? this._allPossibleStates["initial"] : null;
         this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
         this._player = GameObject.FindWithTag("Player");
+
+        this.getDrunkAnimator.speed = 0;
     }
 
     public List<Line> getLines() {
@@ -98,6 +101,7 @@ public class GameManager : MonoBehaviour {
 
         this._currentState.onEnter();
 
+        if (_currentState.name == null) _currentState.name = trigger.nextState;
         this._stateHistory.Add(this._currentState);
     }
 
@@ -121,6 +125,7 @@ public class GameManager : MonoBehaviour {
         this._currentLines = this._currentState.actions.Where(action => action.type == "Line").Select(action => (Line)action).ToList();
         this._currentState.onEnter();
 
+        if (_currentState.name == null) _currentState.name = stateName;
         this._stateHistory.Add(this._currentState);
     }
 
@@ -163,59 +168,74 @@ public class GameManager : MonoBehaviour {
         this._allPossibleStates = new Dictionary<string, State> {
             { 
                 "initial", 
-                new State(() => {})
+                new State(
+                    "initial",
+                    () => {}
+                )
             },
             {
                 "initial bartender",
-                new State(() => { this.dialogueTrigger[0].TriggerDialogue(); })
+                new State(
+                    "initial bartender",
+                    () => { this.dialogueTrigger[0].TriggerDialogue(); }
+                )
             },
             {
                 "initial John",
-                new State(() => { 
-                    this.dialogueTrigger[1].TriggerDialogue(); 
+                new State(
+                    "initial John",
+                    () => { 
+                        this.dialogueTrigger[1].TriggerDialogue(); 
 
-                    this.dialogueTrigger[0].dialogue.addSentence("There is nothing we can do...");
+                        this.dialogueTrigger[0].dialogue.addSentence("There is nothing we can do...");
 
-                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                        0,
-                        "This man, John, looks really bad.",
-                        "John investigation",
-                        this.dialogueTrigger[0].dialogue.sentences.Count - 1
-                    ));
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            0,
+                            "This man, John, looks really bad.",
+                            "John investigation",
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                        ));
 
-                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                        this.dialogueTrigger[0].dialogue.sentences.Count - 1,
-                        "I will try to help him...",
-                        "John investigation",
-                        -1
-                    ));
-                })
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                            "I will try to help him...",
+                            "John investigation",
+                            -1
+                        ));
+                    }
+                )
             },
             {
                 "John investigation",
-                new State(() => {
+                new State(
+                    "John investigation",
+                    () => {
                     
-                })
+                    }
+                )
             },
             {
                 "initial Ken",
-                new State(() => {
-                     this.dialogueTrigger[3].TriggerDialogue();
-                //     this.dialogueTrigger[0].dialogue.addSentence("There are rumors that he works as a clown... A very sad clown... By the way, did I already tell you that snails are not welcome here?...");
-                //     this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                //         0,
-                //         "This man, Ken, looks really sad.",
-                //         "KenTheClown Investigation",
-                //         this.dialogueTrigger[0].dialogue.sentences.Count - 1
-                //     ));
+                new State(
+                    "initial Ken",
+                    () => {
+                    this.dialogueTrigger[3].TriggerDialogue();
+                    //     this.dialogueTrigger[0].dialogue.addSentence("There are rumors that he works as a clown... A very sad clown... By the way, did I already tell you that snails are not welcome here?...");
+                    //     this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                    //         0,
+                    //         "This man, Ken, looks really sad.",
+                    //         "KenTheClown Investigation",
+                    //         this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                    //     ));
 
-                //     this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                //         this.dialogueTrigger[0].dialogue.sentences.Count - 1,
-                //         "...",
-                //         "KenTheClown Investigation",
-                //         -1
-                //     ));
-                })
+                    //     this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                    //         this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                    //         "...",
+                    //         "KenTheClown Investigation",
+                    //         -1
+                    //     ));
+                    }
+                )
             },
             // {
             //     "KenTheClown Investigation",
@@ -225,98 +245,142 @@ public class GameManager : MonoBehaviour {
             // },
             {
                 "initial Rock",
-                new State(() => {
-                    this.dialogueTrigger[4].TriggerDialogue();
-                    this.dialogueTrigger[0].dialogue.addSentence("He recently beat three men in this bar. Since then, people without weapons do not approach him... By the way, why are you still here?...");
-                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                        0,
-                        "This man, Rock, looks really dangerous.",
-                        "BaldRock Investigation",
-                        this.dialogueTrigger[0].dialogue.sentences.Count - 1
-                    ));
+                new State(
+                    "initial Rock",
+                    () => {
+                        this.dialogueTrigger[4].TriggerDialogue();
+                        this.dialogueTrigger[0].dialogue.addSentence("He recently beat three men in this bar. Since then, people without weapons do not approach him... By the way, why are you still here?...");
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            0,
+                            "This man, Rock, looks really dangerous.",
+                            "BaldRock Investigation",
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                        ));
 
-                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                        this.dialogueTrigger[0].dialogue.sentences.Count - 1,
-                        "...",
-                        "BaldRock Investigation",
-                        -1
-                    ));
-                })
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                            "...",
+                            "BaldRock Investigation",
+                            -1
+                        ));
+                    }
+                )
             },
             {
                 "BaldRock Investigation",
-                new State(() => {
+                new State(
+                    "BaldRock Investigation",
+                    () => {
                     
-                })
+                    }
+                )
+            },
+            {
+                "StrangeBottle dialogue",
+                new State(
+                    "StrangeBottle dialogue",
+                    () => {
+                        this.dialogueTrigger[2].TriggerDialogue(); 
+                    }
+                )
             },
             {
                 "StrangeBottle investigation",
-                new State(() => { 
-                    this.dialogueTrigger[2].TriggerDialogue(); 
-                    this.dialogueTrigger[3].dialogue.addSentence("Man! Oh, I meant, snail... Thanks! This bar has a fan of men's asses who always follows the rules and has earned a great deal of authority in front of the Bartender...");
-                    this.dialogueTrigger[3].dialogue.addOption(new Dialogue.option(
-                        0,
-                        "Take it, this will help",
-                        "Ken FinishLine",
-                        this.dialogueTrigger[3].dialogue.sentences.Count - 1
-                    ));
+                new State(
+                    "StrangeBottle investigation",
+                    () => { 
+                        this.getDrunkAnimator.speed = 1;
 
-                    this.dialogueTrigger[3].dialogue.addOption(new Dialogue.option(
-                        0,
-                        "Thanks for the information!",
-                        "Ken FinishLine",
-                        -1
-                    ));
-                })
+                        this.dialogueTrigger[3].dialogue.addSentence("Thanks, it really did! By the way, there is a fan of men's asses who always follows the rules and has earned a great deal of authority in front of the Bartender...");
+                        this.dialogueTrigger[3].dialogue.options = new List<Dialogue.option>();
+                        this.dialogueTrigger[3].dialogue.addOption(new Dialogue.option(
+                            0,
+                            "Take it, this will help",
+                            "Ken FinishLine",
+                            this.dialogueTrigger[3].dialogue.sentences.Count - 1
+                        ));
+
+                        this.dialogueTrigger[3].dialogue.addOption(new Dialogue.option(
+                            1,
+                            "Thanks for the information!",
+                            "Ken FinishLine",
+                            -1
+                        ));
+                    }
+                )
             },
             {
                 "Ken FinishLine",
-                new State(() => {
+                new State(
+                    "Ken FinishLine",
+                    () => {
 
-                })
+                    }
+                )
             },
             {
                 "cop Investigation",
-                new State(() => {
-
-                })
+                new State(
+                    "cop Investigation",
+                    () => {
+                        this.dialogueTrigger[5].TriggerDialogue();
+                    }
+                )
             },
             {
                 "Left bottle",
-                new State(() => {
+                new State(
+                    "Left bottle",
+                    () => {
 
-                })
+                    }
+                )
             },
             {
                 "finish",
-                new State(() => { this.finish(); })
+                new State(
+                    "finish",
+                    () => { this.finish(); }
+                )
             },
             {
                 "wc enter",
-                new State(() => { this._player.transform.position = this.wcEnter.transform.position; })
+                new State(
+                    "wc enter",
+                    () => { this._player.transform.position = this.wcEnter.transform.position; }
+                )
             },
             {
                 "wc exit",
-                new State(() => { this._player.transform.position = this.wcExit.transform.position; })
+                new State(
+                    "wc exit",
+                    () => { this._player.transform.position = this.wcExit.transform.position; }
+                )
             },
             {
                 "initial Dealer",
-                new State(() => {
-                    this.dialogueTrigger[5].TriggerDialogue();
-                    this.dialogueTrigger[0].dialogue.addSentence("");
-                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                        0,
-                        "",
-                        "DrugDealer Investigation",
-                        this.dialogueTrigger[0].dialogue.sentences.Count - 1
-                    ));
-                })
+                new State(
+                    "initial Dealer",
+                    () => {
+                        this.dialogueTrigger[5].TriggerDialogue();
+                        this.dialogueTrigger[0].dialogue.addSentence("");
+                        this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                            0,
+                            "",
+                            "DrugDealer Investigation",
+                            this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                        ));
+                    }
+                )
             },
             {
                 "DrugDealer Investigation",
-                new State(() => {
+                new State(
+                    "DrugDealer Investigation",
+                    () => {
 
-                })
+                    }
+                )
             }
         };
 
@@ -328,9 +392,16 @@ public class GameManager : MonoBehaviour {
     }
 
     private bool validateState(string stateName) {
-        return this._allPossibleStates.ContainsKey(stateName);
-    }
+        Debug.Log("validateState " + stateName);
+        string alreadyPassedStates = "";
+        this._stateHistory.ForEach(state => {
+            alreadyPassedStates += state.name + ", ";
+        });
+        Debug.Log("alreadyPassedStates: " + alreadyPassedStates);
 
+        return this._stateHistory.Any(state => state.name == stateName);
+    }
+    
     [System.Serializable]
     public struct DialogueDictionary {
         public string name;

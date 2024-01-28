@@ -12,6 +12,8 @@ public class EnvironmentTrigger : MonoBehaviour {
     ILineAction action;
 
     void OnTriggerEnter(Collider other) {
+        Debug.Log("Triggered");
+
         if (this.gameManager == null) return;
         if (!other || !other.CompareTag("Player")) return;
         if (this.disabled) return;

@@ -57,7 +57,7 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < dialogue.sentences.Count; i++)
         {
-            sentences.Enqueue(dialogue.sentences[i]);
+            sentences.Enqueue(dialogue.sentences[i].Replace("\\n", "\n"));
             options.Enqueue(orderedOptions[i].ToArray());
         }
 

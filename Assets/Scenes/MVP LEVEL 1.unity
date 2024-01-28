@@ -3960,6 +3960,7 @@ GameObject:
   - component: {fileID: 143706638}
   - component: {fileID: 143706637}
   - component: {fileID: 143706636}
+  - component: {fileID: 143706639}
   m_Layer: 5
   m_Name: DialogText
   m_TagString: Untagged
@@ -3989,16 +3990,16 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 58814cfe2d3234b86a29144b9f43eae5, type: 3}
-    m_FontSize: 24
+    m_FontSize: 18
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 245
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Snails are not allowed here. Get out!
 --- !u!222 &143706637
@@ -4025,9 +4026,23 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 144, y: 23.499996}
-  m_SizeDelta: {x: 900, y: 50}
+  m_AnchoredPosition: {x: -0.14665, y: 23.888885}
+  m_SizeDelta: {x: 420, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &143706639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143706635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1001 &152632697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6660,7 +6675,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 58814cfe2d3234b86a29144b9f43eae5, type: 3}
-    m_FontSize: 28
+    m_FontSize: 24
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
@@ -6696,8 +6711,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -57, y: 73.50001}
-  m_SizeDelta: {x: 500, y: 30}
+  m_AnchoredPosition: {x: 0, y: 55}
+  m_SizeDelta: {x: 420, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &260571211
 PrefabInstance:
@@ -19058,8 +19073,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -999}
-  m_SizeDelta: {x: 700, y: 250}
+  m_AnchoredPosition: {x: -1, y: -110}
+  m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &791523178
 PrefabInstance:
@@ -21570,7 +21585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -39663,6 +39678,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1211207858}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1739511335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1739511336}
+  - component: {fileID: 1739511338}
+  - component: {fileID: 1739511337}
+  m_Layer: 0
+  m_Name: GetDrunkEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1739511336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739511335}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1952474217}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1739511337
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739511335}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f3ba0d52d7fec4f49b8b0ff8b10b88ae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1739511338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739511335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 1
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: 3c1b8c58c966c49a8a1212947f228ed7, type: 2}
 --- !u!4 &1742980340 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 22bf8237906de42f99c7c2f9d26b0d5b,
@@ -43122,6 +43208,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2124305355}
+    - targetCorrespondingSourceObject: {fileID: 1254403252897968, guid: 1d3e21374171a4335a8a51ecb8bf2d17,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2124305358}
   m_SourcePrefab: {fileID: 100100000, guid: 1d3e21374171a4335a8a51ecb8bf2d17, type: 3}
 --- !u!1001 &1863687942
 PrefabInstance:
@@ -44642,7 +44732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 2001203339}
   currentState: initial Ken
-  nextState: StrangeBottle investigation
+  nextState: StrangeBottle dialogue
   lineToAddOnSelect: ...
 --- !u!135 &1936627503
 SphereCollider:
@@ -45308,6 +45398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1952474217}
   - component: {fileID: 1952474216}
+  - component: {fileID: 1952474218}
   m_Layer: 0
   m_Name: PP
   m_TagString: Untagged
@@ -45344,9 +45435,27 @@ Transform:
   m_LocalPosition: {x: -130.19048, y: -218.70285, z: 197.55898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1739511336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1952474218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952474215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: 445598d3c04dc46b8be0e6e28757e175, type: 2}
 --- !u!4 &1966346627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4126207958109318, guid: 1d3e21374171a4335a8a51ecb8bf2d17,
@@ -45867,8 +45976,10 @@ MonoBehaviour:
   - {fileID: 1936627508}
   - {fileID: 1313467563}
   - {fileID: 883798851}
+  - {fileID: 2124305355}
   wcEnter: {fileID: 182841550}
   wcExit: {fileID: 754300580}
+  getDrunkAnimator: {fileID: 1739511337}
 --- !u!4 &2001203340
 Transform:
   m_ObjectHideFlags: 0
@@ -47704,10 +47815,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 789321035}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 746, y: -12.500004}
-  m_SizeDelta: {x: 500, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 450, y: -12.500004}
+  m_SizeDelta: {x: 420, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2096174717
 PrefabInstance:
@@ -48526,12 +48637,16 @@ MonoBehaviour:
   dialogue:
     npcName: Sweet Joe
     sentences:
-    - 
+    - Hello fellow snail. Did you notice anything suspicious?
     options:
     - sentenceIndex: 0
-      optionText: 
-      nextState: 
-      nextDialogueIndex: 0
+      optionText: Nope. Nothing. I'll let you know if I notice anything
+      nextState: finish
+      nextDialogueIndex: -1
+    - sentenceIndex: 0
+      optionText: Why are you gay?
+      nextState: finish
+      nextDialogueIndex: -1
 --- !u!114 &2124305356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48547,7 +48662,28 @@ MonoBehaviour:
   gameManager: {fileID: 2001203339}
   currentState: Ken FinishLine
   nextState: cop Investigation
-  lineToAddOnSelect: 
+  lineToAddOnSelect: Then our snail reached the cop
+--- !u!65 &2124305358
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124305348}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3224939, y: 1.7163454, z: 1.4420348}
+  m_Center: {x: -0.16124706, y: 0.3581726, z: 1.4450054}
 --- !u!1001 &2124419439
 PrefabInstance:
   m_ObjectHideFlags: 0

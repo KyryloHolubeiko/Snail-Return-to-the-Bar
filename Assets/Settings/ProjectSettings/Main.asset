@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Main
   m_EditorClassIdentifier: 
   font: {fileID: 12800000, guid: 58814cfe2d3234b86a29144b9f43eae5, type: 3}
-  fontSize: 20
+  fontSize: 16
   fontColor: {r: 0.509434, g: 0.38893402, b: 0.30998576, a: 1}
   fontColorHover: {r: 0.9716981, g: 0.860119, b: 0.7837753, a: 1}
   fontColorPressed: {r: 0.9716981, g: 0.93594694, b: 0.91211283, a: 1}
