@@ -534,7 +534,7 @@ public class GameManager : MonoBehaviour {
                             4
                         ));
                         this.dialogueTrigger[1].dialogue.addOption(new Dialogue.option(
-                            3,
+                            4,
                             "I'm laughing so hard! I can't stop! I need to tell these to someone else!",
                             "",
                             -1
