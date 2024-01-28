@@ -145,10 +145,10 @@ public class DialogueManager : MonoBehaviour
 
             buttonObject.transform.SetParent(this.dialogueBox.transform, false);
             Vector3 position = buttonObject.GetComponent<RectTransform>().position;
-            position.y -= (60 / options.Length) * i + 1;
+            position.y -= 25 * i + 1;
             buttonObject.transform.position = position;
 
-            buttonObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 372f / 1.5f);
+            buttonObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 900);
             buttonObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 20f);
 
             buttonObject.GetComponent<RectTransform>().anchorMin = new Vector2(0f, 0f);
