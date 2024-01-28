@@ -631,6 +631,20 @@ public class GameManager : MonoBehaviour {
                     "called the cop gay",
                     () => { this.finish(); }
                 )
+            },
+            {
+                "stupid joke",
+                new State(
+                    "stupid joke",
+                    () => { this.finish(); }
+                )
+            },
+            {
+                "good joke",
+                new State(
+                    "good joke",
+                    () => { this.finish(); }
+                )
             }
         };
 
