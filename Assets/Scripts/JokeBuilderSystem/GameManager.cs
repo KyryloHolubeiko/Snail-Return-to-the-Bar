@@ -200,29 +200,29 @@ public class GameManager : MonoBehaviour {
             {
                 "initial Ken",
                 new State(() => {
-                    this.dialogueTrigger[3].TriggerDialogue();
-                    this.dialogueTrigger[0].dialogue.addSentence("There are rumors that he works as a clown... A very sad clown... By the way, did I already tell you that snails are not welcome here?...");
-                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                        0,
-                        "This man, Ken, looks really sad.",
-                        "KenTheClown Investigation",
-                        this.dialogueTrigger[0].dialogue.sentences.Count - 1
-                    ));
+                     this.dialogueTrigger[3].TriggerDialogue();
+                //     this.dialogueTrigger[0].dialogue.addSentence("There are rumors that he works as a clown... A very sad clown... By the way, did I already tell you that snails are not welcome here?...");
+                //     this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                //         0,
+                //         "This man, Ken, looks really sad.",
+                //         "KenTheClown Investigation",
+                //         this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                //     ));
 
-                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
-                        this.dialogueTrigger[0].dialogue.sentences.Count - 1,
-                        "...",
-                        "KenTheClown Investigation",
-                        -1
-                    ));
+                //     this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                //         this.dialogueTrigger[0].dialogue.sentences.Count - 1,
+                //         "...",
+                //         "KenTheClown Investigation",
+                //         -1
+                //     ));
                 })
             },
-            {
-                "KenTheClown Investigation",
-                new State(() => {
+            // {
+            //     "KenTheClown Investigation",
+            //     new State(() => {
                     
-                })
-            },
+            //     })
+            // },
             {
                 "initial Rock",
                 new State(() => {
@@ -251,7 +251,35 @@ public class GameManager : MonoBehaviour {
             },
             {
                 "StrangeBottle investigation",
-                new State(() => { this.dialogueTrigger[2].TriggerDialogue(); })
+                new State(() => { 
+                    this.dialogueTrigger[2].TriggerDialogue(); 
+                    this.dialogueTrigger[3].dialogue.addSentence("Man! Oh, I meant, snail... Thanks! This bar has a fan of men's asses who always follows the rules and has earned a great deal of authority in front of the Bartender...");
+                    this.dialogueTrigger[3].dialogue.addOption(new Dialogue.option(
+                        0,
+                        "Take it, this will help",
+                        "Ken FinishLine",
+                        this.dialogueTrigger[3].dialogue.sentences.Count - 1
+                    ));
+
+                    this.dialogueTrigger[3].dialogue.addOption(new Dialogue.option(
+                        0,
+                        "Thanks for the information!",
+                        "Ken FinishLine",
+                        -1
+                    ));
+                })
+            },
+            {
+                "Ken FinishLine",
+                new State(() => {
+
+                })
+            },
+            {
+                "cop Investigation",
+                new State(() => {
+
+                })
             },
             {
                 "Left bottle",
@@ -270,6 +298,25 @@ public class GameManager : MonoBehaviour {
             {
                 "wc exit",
                 new State(() => { this._player.transform.position = this.wcExit.transform.position; })
+            },
+            {
+                "initial Dealer",
+                new State(() => {
+                    this.dialogueTrigger[5].TriggerDialogue();
+                    this.dialogueTrigger[0].dialogue.addSentence("");
+                    this.dialogueTrigger[0].dialogue.addOption(new Dialogue.option(
+                        0,
+                        "",
+                        "DrugDealer Investigation",
+                        this.dialogueTrigger[0].dialogue.sentences.Count - 1
+                    ));
+                })
+            },
+            {
+                "DrugDealer Investigation",
+                new State(() => {
+
+                })
             }
         };
 
