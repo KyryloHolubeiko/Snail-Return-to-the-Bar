@@ -19,13 +19,10 @@ public class FinishController : MonoBehaviour {
         Vector3 oldPosition = this.finishStory.transform.position;
 
         if ((oldPosition.y - 190) > (StaticData.passedStates.Count * 28 * 2 * 3.5)) {
-            Debug.Log("Finish story is over: " + oldPosition.y.ToString() + " " + StaticData.passedStates.Count.ToString() + " " + (StaticData.passedStates.Count * 28 * 2).ToString());
             // show the restart button
             return;
         }
         Vector3 newPosition = new Vector3(360, oldPosition.y + (14f / 60f), 0);
-
-        Debug.Log("Old position: " + oldPosition.ToString());
 
         this.finishStory.transform.position = newPosition;
     }
